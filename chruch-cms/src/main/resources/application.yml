@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/church_cms
+    username: ephraim
+    password: Ndana123#
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://ascylnltsokwguwqatnq.supabase.co/auth/v1/.well-known/jwks.json
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8081
+
+springdoc:
+  swagger-ui:
+    url: /openapi.yaml
