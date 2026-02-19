@@ -85,6 +85,34 @@ http://localhost:8081/swagger-ui/index.html
 | PUT    | `/api/members/{id}`    | Auth    | Update a member              |
 | DELETE | `/api/members/{id}`    | Auth    | Delete a member              |
 
+### Events
+| Method | Endpoint                              | Access  | Description                    |
+|--------|---------------------------------------|---------|--------------------------------|
+| GET    | `/api/events`                         | Auth    | List events (date filters)     |
+| POST   | `/api/events`                         | Auth    | Create an event                |
+| GET    | `/api/events/{id}`                    | Auth    | Get event by ID                |
+| PUT    | `/api/events/{id}`                    | Auth    | Update an event                |
+| DELETE | `/api/events/{id}`                    | Auth    | Delete an event                |
+| POST   | `/api/events/{id}/rsvp`               | Auth    | RSVP to an event               |
+
+### Attendance
+| Method | Endpoint                              | Access  | Description                    |
+|--------|---------------------------------------|---------|--------------------------------|
+| GET    | `/api/events/{id}/attendance`         | Auth    | List attendance for event      |
+| POST   | `/api/events/{id}/attendance`         | Auth    | Record attendance              |
+| GET    | `/api/events/{id}/attendance/summary` | Auth    | Attendance summary             |
+
+### Announcements
+| Method | Endpoint              | Access  | Description                    |
+|--------|-----------------------|---------|--------------------------------|
+| GET    | `/api/announcements`  | Auth    | List all announcements         |
+| POST   | `/api/announcements`  | Auth    | Create announcement            |
+
+### Reports
+| Method | Endpoint               | Access  | Description                    |
+|--------|------------------------|---------|--------------------------------|
+| GET    | `/api/reports/summary` | Auth    | Dashboard summary              |
+
 ## Project Structure
 
 ```
