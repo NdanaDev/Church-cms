@@ -106,6 +106,3 @@ chruch-cms/src/main/java/com/ephraim/chruch_cms/
 | LEADER | Event and attendance management          |
 | MEMBER | Read-only access to events/announcements |
 
-## License
-
-This project is developed as part of the CCS3142 Mobile Application Development course.
