@@ -54,6 +54,11 @@ Web-based Church Management System built with **Spring Boot**, **Flutter Web**, 
    - `spring.datasource.password` — your database password
    - `spring.security.oauth2.resourceserver.jwt.jwk-set-uri` — your Supabase JWKS URL
 
+   Alternatively, leave the placeholders in place and supply the values as
+   environment variables: `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, and
+   `SUPABASE_JWKS_URI`. The real `application.yml` is git-ignored so credentials
+   are never committed.
+
 4. Run the application:
    ```bash
    ./mvnw spring-boot:run
