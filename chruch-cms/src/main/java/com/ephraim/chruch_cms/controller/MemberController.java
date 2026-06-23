@@ -31,6 +31,7 @@ public class MemberController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Member> createMember(@Valid @RequestBody MemberCreateRequest request) {
         Member member = memberService.createMember(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(member);
@@ -42,12 +43,14 @@ public class MemberController {
     }
 
     @PutMapping("/{memberId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public Member updateMember(@PathVariable UUID memberId,
                                @Valid @RequestBody MemberUpdateRequest request) {
         return memberService.updateMember(memberId, request);
     }
 
     @DeleteMapping("/{memberId}")
+    @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteMember(@PathVariable UUID memberId) {
         memberService.deleteMember(memberId);
