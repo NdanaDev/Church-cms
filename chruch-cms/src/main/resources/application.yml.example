@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    # Override these via environment variables or by copying this file to application.yml
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/church_cms}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:changeme}
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Your Supabase project's JWKS endpoint
+          jwk-set-uri: ${SUPABASE_JWKS_URI:https://YOUR-PROJECT-REF.supabase.co/auth/v1/.well-known/jwks.json}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8081
+
+springdoc:
+  swagger-ui:
+    url: /openapi.yaml
