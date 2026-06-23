@@ -28,6 +28,7 @@ public class AnnouncementController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Announcement> createAnnouncement(
             @Valid @RequestBody AnnouncementCreateRequest request,
             @AuthenticationPrincipal Jwt jwt) {

@@ -26,6 +26,7 @@ public class AttendanceController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'LEADER')")
     public Attendance recordAttendance(@PathVariable UUID eventId,
                                        @Valid @RequestBody AttendanceUpsertRequest request) {
         return attendanceService.recordAttendance(eventId, request);

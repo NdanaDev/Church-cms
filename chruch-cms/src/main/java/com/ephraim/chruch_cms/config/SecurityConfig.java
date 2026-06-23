@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -26,6 +25,12 @@ public class SecurityConfig {
 
     @Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}")
     private String jwkSetUri;
+
+    private final JwtRoleConverter jwtRoleConverter;
+
+    public SecurityConfig(JwtRoleConverter jwtRoleConverter) {
+        this.jwtRoleConverter = jwtRoleConverter;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -49,8 +54,9 @@ public class SecurityConfig {
                 // everything else needs auth
                 .anyRequest().authenticated()
             )
-            // IMPORTANT: JWT auth
-            .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
+            // IMPORTANT: JWT auth — map the Supabase role claim to ROLE_* authorities
+            .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt ->
+                    jwt.jwtAuthenticationConverter(jwtRoleConverter)));
 
         return http.build();
     }
